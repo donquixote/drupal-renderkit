@@ -23,3 +23,16 @@ function _renderkit_pop_parent(array $element) {
   array_pop($element['#parents']);
   return $element;
 }
+
+/**
+ * Generic form builder callback.
+ *
+ * @param array $existing_form
+ * @param array $form_state
+ * @param array $form
+ *
+ * @return array
+ */
+function _renderkit_generic_form(array $existing_form, array &$form_state, array $form) {
+  return $form;
+}
