@@ -1,6 +1,9 @@
 <?php
 
 /* @see _renderkit_pop_parent() */
+
+use Drupal\faktoria\Hub\CfrPluginDiscoveryHub;
+
 define('RENDERKIT_POP_PARENT', '_renderkit_pop_parent');
 
 /**
@@ -9,9 +12,20 @@ define('RENDERKIT_POP_PARENT', '_renderkit_pop_parent');
  * @return array
  */
 function renderkit_cfrplugin_info() {
+
   return function_exists('cfrplugindiscovery')
     ? cfrplugindiscovery()->discoverByInterface(__DIR__ . '/src', 'Drupal\renderkit')
     : [];
+}
+
+/**
+ * Implements hook_faktoria_info()
+ *
+ * @return array
+ */
+function renderkit_faktoria_info() {
+  return CfrPluginDiscoveryHub::getInstance()
+    ->moduleFileScanPsr4(__FILE__);
 }
 
 /**
