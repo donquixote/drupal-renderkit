@@ -1,0 +1,7 @@
+name: Render Kit
+description: Tools for dealing with render arrays.
+type: module
+core: 8.x
+
+dependencies:
+  - themekit
