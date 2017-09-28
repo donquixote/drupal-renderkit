@@ -43,7 +43,7 @@ class BuildProvider_Sequence implements BuildProviderInterface {
           $context),
       ],
       [
-        NULL,
+        t('Build providers'),
         t('List format'),
       ]
     );
