@@ -2,6 +2,9 @@
 
 namespace Drupal\renderkit\BuildProcessor;
 
+/**
+ * This is currently unused and untested!
+ */
 class BuildProcessor_ClassAttribute implements BuildProcessorInterface {
 
   /**
@@ -31,17 +34,21 @@ class BuildProcessor_ClassAttribute implements BuildProcessorInterface {
    *   Render array after the processing.
    */
   public function process(array $build) {
+
     if (!isset($build[$this->attributesKey])) {
+      // @todo Would it be better to add the key?
       return $build;
     }
+
     if (!isset($build[$this->attributesKey]['class'])) {
-      $this->attributesKey['class'] = $this->classes;
+      $build[$this->attributesKey]['class'] = $this->classes;
     }
     else {
       foreach ($this->classes as $class) {
-        $this->attributesKey['class'][] = $class;
+        $build[$this->attributesKey]['class'][] = $class;
       }
     }
+
     return $build;
   }
 }
