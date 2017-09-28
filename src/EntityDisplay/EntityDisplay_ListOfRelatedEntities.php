@@ -53,11 +53,9 @@ class EntityDisplay_ListOfRelatedEntities extends EntitiesDisplayBase {
 
     $builds = [];
     foreach ($targetEntitiess as $delta => $targetEntities) {
-      if (!is_array($targetEntities)) {
-        dpm(get_defined_vars());
-        break;
-      }
-      $builds[$delta] = $this->entitiesListFormat->entitiesBuildList($entityType, $targetEntities);
+      $builds[$delta] = $this->entitiesListFormat->entitiesBuildList(
+        $this->entityToEntities->getTargetEntityType(),
+        $targetEntities);
     }
 
     return $builds;
