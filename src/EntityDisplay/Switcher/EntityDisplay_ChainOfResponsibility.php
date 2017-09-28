@@ -19,7 +19,7 @@ class EntityDisplay_ChainOfResponsibility extends EntitiesDisplayBase {
    * @var \Drupal\renderkit\EntityDisplay\EntityDisplayInterface[]
    *   Format: $[] = $displayHandler
    */
-  private $displays = [];
+  private $displays;
 
   /**
    * @CfrPlugin(
