@@ -41,6 +41,7 @@ class EntityDisplay_RepeatSameEntity extends EntityDisplayBase {
 
   /**
    * @param \Drupal\renderkit\EntitiesListFormat\EntitiesListFormatInterface $entitiesListFormat
+   * @param int $n
    */
   public function __construct(EntitiesListFormatInterface $entitiesListFormat, $n) {
     $this->entitiesListFormat = $entitiesListFormat;
