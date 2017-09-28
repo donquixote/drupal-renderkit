@@ -2,6 +2,7 @@
 
 namespace Drupal\renderkit\EntityDisplay;
 
+use Drupal\renderkit\Configurator\Configurator_EntityDisplay_FieldWithFormatter;
 use Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessorInterface;
 use Drupal\renderkit\Helper\EntityTypeFieldDisplayHelper;
 
@@ -29,6 +30,18 @@ class EntityDisplay_FieldWithFormatter extends EntitiesDisplayBase {
    * @var string|null
    */
   private $langcode;
+
+  /**
+   * @CfrPlugin("fieldWithFormatter", @t("Field with formatter"))
+   *
+   * @param string|null $entityType
+   * @param string|null $bundleName
+   *
+   * @return \Drupal\renderkit\Configurator\Configurator_EntityDisplay_FieldWithFormatter
+   */
+  public static function configurator($entityType = NULL, $bundleName = NULL) {
+    return new Configurator_EntityDisplay_FieldWithFormatter($entityType, $bundleName);
+  }
 
   /**
    * @param string $field_name

@@ -9,9 +9,6 @@ use Drupal\cfrapi\SummaryBuilder\SummaryBuilderInterface;
 use Drupal\renderkit\EntityDisplay\EntityDisplay_FieldWithFormatter;
 use Drupal\renderkit\FieldDisplayProcessor\FieldDisplayProcessorInterface;
 
-/**
- * @CfrPlugin("fieldWithFormatter", @t("Field with formatter *"))
- */
 class Configurator_EntityDisplay_FieldWithFormatter extends Configurator_GroupBase {
 
   /**
