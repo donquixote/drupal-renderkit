@@ -27,7 +27,7 @@ class EntityDisplay_RelatedEntity implements EntityDisplayInterface {
   /**
    * @CfrPlugin(
    *   id = "related",
-   *   label = "Show related entity"
+   *   label = "Related entity"
    * )
    *
    * @param \Drupal\cfrapi\Context\CfrContextInterface $context
