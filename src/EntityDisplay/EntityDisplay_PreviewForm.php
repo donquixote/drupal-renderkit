@@ -124,7 +124,7 @@ class EntityDisplay_PreviewForm extends EntityDisplayBase {
 
   /**
    * @param string $entityType
-   * @param object $bundle
+   * @param object $entity
    *
    * @return \Drupal\cfrapi\Context\CfrContextInterface
    */
