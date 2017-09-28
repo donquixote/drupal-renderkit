@@ -6,7 +6,7 @@ use Drupal\renderkit\EntitiesListFormat\EntitiesListFormatInterface;
 use Drupal\renderkit\EntityToEntities\EntityToEntitiesInterface;
 
 /**
- * @CfrPlugin("listOfRelatedEntities", "List of related entities")
+ * @CfrPlugin("listOfRelatedEntities", "Related entities")
  */
 class EntityDisplay_ListOfRelatedEntities extends EntitiesDisplayBase {
 
