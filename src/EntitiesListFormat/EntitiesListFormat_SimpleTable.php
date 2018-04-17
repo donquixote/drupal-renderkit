@@ -2,9 +2,9 @@
 
 namespace Drupal\renderkit\EntitiesListFormat;
 
-use Drupal\cfrapi\Configurator\Sequence\Configurator_Sequence;
+use Drupal\cfrapi\Context\CfrContextInterface;
 use Drupal\cfrreflection\Configurator\Configurator_CallbackMono;
-use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
+use Drupal\renderkit\EntityDisplay\EntityDisplay;
 
 class EntitiesListFormat_SimpleTable implements EntitiesListFormatInterface {
 
@@ -16,13 +16,14 @@ class EntitiesListFormat_SimpleTable implements EntitiesListFormatInterface {
   /**
    * @CfrPlugin("simpleTable", "Simple table")
    *
+   * @param \Drupal\cfrapi\Context\CfrContextInterface|null $context
+   *
    * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
    */
-  public static function createConfigurator() {
+  public static function createConfigurator(CfrContextInterface $context = NULL) {
     return Configurator_CallbackMono::createFromClassName(
       self::class,
-      new Configurator_Sequence(
-        cfrplugin()->interfaceGetOptionalConfigurator(EntityDisplayInterface::class)));
+      EntityDisplay::sequenceConfigurator($context));
   }
 
   /**
