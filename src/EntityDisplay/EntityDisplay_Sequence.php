@@ -2,7 +2,6 @@
 
 namespace Drupal\renderkit\EntityDisplay;
 
-use Drupal\cfrapi\Configurator\Sequence\Configurator_Sequence;
 use Drupal\cfrapi\Context\CfrContextInterface;
 use Drupal\cfrreflection\Configurator\Configurator_CallbackMono;
 
@@ -28,9 +27,9 @@ class EntityDisplay_Sequence extends EntitiesDisplayBase {
    * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
    */
   public static function createConfigurator(CfrContextInterface $context = NULL) {
-    $displayConfigurator = cfrplugin()->interfaceGetOptionalConfigurator(EntityDisplayInterface::class, $context);
-    $sequenceConfigurator = new Configurator_Sequence($displayConfigurator);
-    return Configurator_CallbackMono::createFromClassName(__CLASS__, $sequenceConfigurator);
+    return Configurator_CallbackMono::createFromClassName(
+      self::class,
+      EntityDisplay::sequenceConfigurator());
   }
 
   /**
