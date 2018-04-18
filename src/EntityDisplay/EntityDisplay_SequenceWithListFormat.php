@@ -75,6 +75,10 @@ class EntityDisplay_SequenceWithListFormat extends EntityDisplay_Sequence {
 
     $builds = parent::buildEntities($entityType, $entities);
 
-    return $this->listFormat->buildList($builds);
+    foreach ($builds as &$build) {
+      $build = $this->listFormat->buildList($build);
+    }
+
+    return $builds;
   }
 }
