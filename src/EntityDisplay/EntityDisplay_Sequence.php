@@ -40,7 +40,9 @@ class EntityDisplay_Sequence extends EntitiesDisplayBase {
     foreach ($displayHandlers as $delta => $displayHandler) {
       if (!$displayHandler instanceof EntityDisplayInterface) {
         unset($displayHandlers[$delta]);
-        break;
+      }
+      if (!is_int($delta) && '' !== $delta && '#' === $delta[0]) {
+        unset($displayHandlers[$delta]);
       }
     }
 
