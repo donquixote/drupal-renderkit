@@ -23,7 +23,7 @@ class EntityDisplay_SequenceWithListFormat extends EntityDisplay_Sequence {
   private $listFormat;
 
   /**
-   * @CfrPlugin("sequence", @t("Sequence of entity displays, with list format"))
+   * @CfrPlugin("sequenceWithListFormat", @t("Sequence of entity displays, with list format"))
    *
    * @param \Drupal\cfrapi\Context\CfrContextInterface $context
    *
