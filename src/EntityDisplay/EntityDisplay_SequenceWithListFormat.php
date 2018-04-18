@@ -4,7 +4,6 @@ namespace Drupal\renderkit\EntityDisplay;
 
 use Drupal\cfrapi\Context\CfrContextInterface;
 use Drupal\cfrreflection\Configurator\Configurator_CallbackConfigurable;
-use Drupal\cfrreflection\Configurator\Configurator_CallbackMono;
 use Drupal\renderkit\ListFormat\ListFormat;
 use Drupal\renderkit\ListFormat\ListFormatInterface;
 
