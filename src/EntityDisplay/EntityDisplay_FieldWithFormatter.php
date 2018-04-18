@@ -91,6 +91,9 @@ class EntityDisplay_FieldWithFormatter extends EntitiesDisplayBase {
    */
   public function buildEntities($entityType, array $entities) {
     $helper = EntityTypeFieldDisplayHelper::create($entityType, $this->fieldName, $this->display, $this->langcode);
+    if (NULL === $helper) {
+      return [];
+    }
     $builds = $helper->buildMultipleByDelta($entities);
     if (NULL !== $this->fieldDisplayProcessor) {
       foreach ($builds as $delta => $build) {
