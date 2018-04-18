@@ -88,7 +88,6 @@ class EntityDisplay_FieldWithFormatter extends EntitiesDisplayBase {
    * @param array $entities
    *
    * @return array
-   * @throws \EntityMalformedException
    */
   public function buildEntities($entityType, array $entities) {
     $helper = EntityTypeFieldDisplayHelper::create($entityType, $this->fieldName, $this->display, $this->langcode);
