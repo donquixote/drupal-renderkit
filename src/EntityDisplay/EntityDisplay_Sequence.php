@@ -17,7 +17,7 @@ class EntityDisplay_Sequence extends EntitiesDisplayBase {
   /**
    * @var \Drupal\renderkit\EntityDisplay\EntityDisplayInterface[]
    */
-  protected $displayHandlers;
+  private $displayHandlers;
 
   /**
    * @CfrPlugin("sequence", @t("Sequence of entity displays"))
