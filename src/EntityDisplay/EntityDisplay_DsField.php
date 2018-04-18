@@ -59,12 +59,12 @@ class EntityDisplay_DsField extends EntityDisplayBase {
       [
         new Configurator_DsFieldWithSettings($entity_type),
         Configurator_FlatOptionsSelect::createRequired(
-        [
-          'above' => t('Above'),
-          'inline' => t('Inline'),
-          'hidden' => '<' . t('Hidden') . '>',
-        ],
-        'hidden'),
+          [
+            'above' => t('Above'),
+            'inline' => t('Inline'),
+            'hidden' => '<' . t('Hidden') . '>',
+          ],
+          'hidden'),
         cfrplugin()->interfaceGetOptionalConfigurator(
           FieldDisplayProcessorInterface::class),
       ],
