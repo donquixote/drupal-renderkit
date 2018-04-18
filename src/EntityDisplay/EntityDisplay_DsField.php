@@ -45,9 +45,13 @@ class EntityDisplay_DsField extends EntityDisplayBase {
    * @param string|null $entity_type
    *   Contextual argument.
    *
-   * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
+   * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface|null
    */
   public static function plugin($entity_type = NULL) {
+
+    if (!function_exists('ds_get_fields') || !module_exists('ds')) {
+      return NULL;
+    }
 
     return Configurator_CallbackConfigurable::createFromClassStaticMethod(
       self::class,
@@ -84,6 +88,11 @@ class EntityDisplay_DsField extends EntityDisplayBase {
     $labelDisplay,
     FieldDisplayProcessorInterface $fieldDisplayProcessor = NULL
   ) {
+
+    if (!function_exists('ds_get_fields') || !module_exists('ds')) {
+      return NULL;
+    }
+
     list($entityType, $fieldName) = explode(':', $conf['field']) + [NULL, NULL];
     $settings = isset($conf['display']) ? $conf['display'] : [];
     $settings['label'] = $labelDisplay;
