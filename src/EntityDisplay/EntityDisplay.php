@@ -2,7 +2,6 @@
 
 namespace Drupal\renderkit\EntityDisplay;
 
-use Drupal\cfrapi\Exception\ConfToValueException;
 use Drupal\renderkit\StaticHubBase;
 
 class EntityDisplay extends StaticHubBase {
@@ -23,8 +22,7 @@ class EntityDisplay extends StaticHubBase {
       return $candidate;
     }
 
-    throw new ConfToValueException(
-      "The configurator returned something other than a batch operation object.");
+    throw self::unexpectedValueException($candidate);
   }
 
 }
