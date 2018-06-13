@@ -2,7 +2,7 @@
 
 namespace Drupal\renderkit;
 
-use Drupal\cfrapi\Configurator\Sequence\Configurator_Sequence;
+use Drupal\cfrapi\Configurator\Sequence\Configurator_SequenceTabledrag;
 use Drupal\cfrapi\Context\CfrContextInterface;
 use Drupal\cfrapi\SummaryBuilder\SummaryBuilder_Static;
 use Drupal\renderkit\Configurator\Configurator_Passthru;
@@ -39,8 +39,8 @@ abstract class StaticHubBase {
    * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
    */
   public static function sequenceConfigurator(CfrContextInterface $context = NULL) {
-    return new Configurator_Sequence(
-      static::optionalConfigurator($context));
+    return new Configurator_SequenceTabledrag(
+      static::configurator($context));
   }
 
   /**
