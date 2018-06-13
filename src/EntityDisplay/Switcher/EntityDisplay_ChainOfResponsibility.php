@@ -2,11 +2,10 @@
 
 namespace Drupal\renderkit\EntityDisplay\Switcher;
 
-use Drupal\cfrapi\Configurator\Sequence\Configurator_Sequence;
 use Drupal\cfrapi\Context\CfrContextInterface;
 use Drupal\cfrreflection\Configurator\Configurator_CallbackConfigurable;
 use Drupal\renderkit\EntityDisplay\EntitiesDisplayBase;
-use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
+use Drupal\renderkit\EntityDisplay\EntityDisplay;
 
 /**
  * Chain-of-responsibility entity display switcher.
@@ -32,8 +31,7 @@ class EntityDisplay_ChainOfResponsibility extends EntitiesDisplayBase {
    * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
    */
   public static function createPlugin(CfrContextInterface $context = NULL) {
-    $displayConfigurator = cfrplugin()->interfaceGetOptionalConfigurator(EntityDisplayInterface::class, $context);
-    $configurators = [new Configurator_Sequence($displayConfigurator)];
+    $configurators = [EntityDisplay::sequenceConfigurator($context)];
     $labels = [''];
     return Configurator_CallbackConfigurable::createFromClassName(__CLASS__, $configurators, $labels);
   }

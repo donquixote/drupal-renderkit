@@ -2,7 +2,6 @@
 
 namespace Drupal\renderkit\EntityBuildProcessor;
 
-use Drupal\cfrapi\Configurator\Sequence\Configurator_Sequence;
 use Drupal\cfrapi\Context\CfrContextInterface;
 use Drupal\cfrreflection\Configurator\Configurator_CallbackConfigurable;
 use Drupal\renderkit\BuildProcessor\BuildProcessorInterface;
@@ -26,8 +25,7 @@ class EntityBuildProcessor_Sequence implements EntityBuildProcessorInterface {
    * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
    */
   public static function createConfigurator(CfrContextInterface $context = NULL) {
-    $displayConfigurator = cfrplugin()->interfaceGetOptionalConfigurator(EntityBuildProcessorInterface::class, $context);
-    $configurators = [new Configurator_Sequence($displayConfigurator)];
+    $configurators = [EntityBuildProcessor::sequenceConfigurator($context)];
     $labels = [''];
     return Configurator_CallbackConfigurable::createFromClassStaticMethod(__CLASS__, 'create', $configurators, $labels);
   }

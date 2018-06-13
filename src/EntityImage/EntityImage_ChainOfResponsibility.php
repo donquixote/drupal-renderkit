@@ -2,7 +2,6 @@
 
 namespace Drupal\renderkit\EntityImage;
 
-use Drupal\cfrapi\Configurator\Sequence\Configurator_Sequence;
 use Drupal\cfrapi\Context\CfrContextInterface;
 use Drupal\cfrreflection\Configurator\Configurator_CallbackConfigurable;
 use Drupal\renderkit\EntityDisplay\EntitiesDisplayBase;
@@ -29,10 +28,7 @@ class EntityImage_ChainOfResponsibility extends EntitiesDisplayBase implements E
     return Configurator_CallbackConfigurable::createFromClassName(
       __CLASS__,
       [
-        new Configurator_Sequence(
-          cfrplugin()->interfaceGetOptionalConfigurator(
-            EntityImageInterface::class,
-            $context)),
+        EntityImage::sequenceConfigurator($context),
       ],
       [
         '',

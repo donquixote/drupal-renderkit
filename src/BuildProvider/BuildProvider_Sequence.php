@@ -2,9 +2,9 @@
 
 namespace Drupal\renderkit\BuildProvider;
 
-use Drupal\cfrapi\Configurator\Sequence\Configurator_Sequence;
 use Drupal\cfrapi\Context\CfrContextInterface;
 use Drupal\cfrreflection\Configurator\Configurator_CallbackConfigurable;
+use Drupal\renderkit\ListFormat\ListFormat;
 use Drupal\renderkit\ListFormat\ListFormatInterface;
 
 class BuildProvider_Sequence implements BuildProviderInterface {
@@ -33,14 +33,8 @@ class BuildProvider_Sequence implements BuildProviderInterface {
     return Configurator_CallbackConfigurable::createFromClassName(
       __CLASS__,
       [
-        new Configurator_Sequence(
-          cfrplugin()->interfaceGetOptionalConfigurator(
-            BuildProviderInterface::class,
-            $context)
-        ),
-        cfrplugin()->interfaceGetOptionalConfigurator(
-          ListFormatInterface::class,
-          $context),
+        BuildProvider::sequenceConfigurator($context),
+        ListFormat::optionalConfigurator($context),
       ],
       [
         t('Build providers'),
