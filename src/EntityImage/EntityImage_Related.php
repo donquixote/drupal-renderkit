@@ -4,6 +4,7 @@ namespace Drupal\renderkit\EntityImage;
 
 use Drupal\cfrapi\Context\CfrContextInterface;
 use Drupal\cfrreflection\Configurator\Configurator_CallbackConfigurable;
+use Drupal\renderkit\EntityToEntity\EntityToEntity;
 use Drupal\renderkit\EntityToEntity\EntityToEntityInterface;
 
 class EntityImage_Related implements EntityImageInterface {
@@ -34,14 +35,12 @@ class EntityImage_Related implements EntityImageInterface {
    * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
    */
   public static function createConfigurator(CfrContextInterface $context = NULL) {
-    /** @var \Drupal\cfrplugin\Hub\CfrPluginHubInterface $hub */
-    $hub = cfrplugin();
     return Configurator_CallbackConfigurable::createFromClassName(
       __CLASS__,
       [
-        $hub->interfaceGetConfigurator(EntityToEntityInterface::class, $context),
+        EntityToEntity::configurator($context),
         // This one is without context, because we no longer know the entity type.
-        $hub->interfaceGetConfigurator(EntityImageInterface::class),
+        EntityImage::configurator(),
       ],
       [
         t('Entity relation'),

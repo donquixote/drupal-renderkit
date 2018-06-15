@@ -4,7 +4,9 @@ namespace Drupal\renderkit\EntityDisplay\Decorator;
 
 use Drupal\cfrapi\Context\CfrContextInterface;
 use Drupal\cfrreflection\Configurator\Configurator_CallbackConfigurable;
+use Drupal\renderkit\EntityDisplay\EntityDisplay;
 use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
+use Drupal\renderkit\EntityToEntity\EntityToEntity;
 use Drupal\renderkit\EntityToEntity\EntityToEntityInterface;
 
 class EntityDisplay_RelatedEntity implements EntityDisplayInterface {
@@ -35,14 +37,12 @@ class EntityDisplay_RelatedEntity implements EntityDisplayInterface {
    * @return \Drupal\cfrapi\Configurator\ConfiguratorInterface
    */
   public static function createConfigurator(CfrContextInterface $context = NULL) {
-    /** @var \Drupal\cfrplugin\Hub\CfrPluginHubInterface $hub */
-    $hub = cfrplugin();
     return Configurator_CallbackConfigurable::createFromClassName(
       __CLASS__,
       [
-        $hub->interfaceGetConfigurator(EntityToEntityInterface::class, $context),
+        EntityToEntity::configurator($context),
         // This one is without context, because we no longer know the entity type.
-        $hub->interfaceGetConfigurator(EntityDisplayInterface::class),
+        EntityDisplay::configurator(),
       ],
       [
         t('Entity relation'),

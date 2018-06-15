@@ -4,6 +4,7 @@ namespace Drupal\renderkit\FieldDisplayProcessor;
 
 use Drupal\cfrapi\Configurator\Bool\Configurator_Checkbox;
 use Drupal\cfrreflection\Configurator\Configurator_CallbackConfigurable;
+use Drupal\renderkit\ListFormat\ListFormat;
 use Drupal\renderkit\ListFormat\ListFormatInterface;
 
 class FieldDisplayProcessor_ListFormat implements FieldDisplayProcessorInterface {
@@ -23,7 +24,7 @@ class FieldDisplayProcessor_ListFormat implements FieldDisplayProcessorInterface
       __CLASS__,
       'create',
       [
-        cfrplugin()->interfaceGetConfigurator(ListFormatInterface::class),
+        ListFormat::configurator(),
         new Configurator_Checkbox(),
       ],
       [
