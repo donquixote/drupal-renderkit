@@ -65,6 +65,8 @@ class Configurator_EntityDisplay_FieldWithFormatter extends Configurator_GroupBa
    * @param mixed $conf
    *
    * @return \Drupal\renderkit\EntityDisplay\EntityDisplayInterface|mixed
+   *
+   * @throws \Drupal\cfrapi\Exception\ConfToValueException
    */
   public function confGetValue($conf) {
     $conf = $this->confGetNormalized($conf);
