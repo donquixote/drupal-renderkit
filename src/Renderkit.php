@@ -4,6 +4,7 @@ namespace Drupal\renderkit;
 
 use Drupal\renderkit\BuildProcessor\BuildProcessor_Container;
 use Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessor_Wrapper_ContextualLinks;
+use Drupal\renderkit\EntityDisplay\Decorator\EntityDisplay_WithBuildProcessor;
 use Drupal\renderkit\EntityDisplay\Decorator\EntityDisplay_WithEntityBuildProcessor;
 use Drupal\renderkit\EntityDisplay\EntityDisplayInterface;
 
@@ -23,7 +24,7 @@ class Renderkit {
   public static function entityContainer(EntityDisplayInterface $decorated, $tagName = 'div') {
     $processor = (new BuildProcessor_Container())
       ->setTagName($tagName);
-    return EntityDisplay_WithEntityBuildProcessor::create($decorated, $processor);
+    return EntityDisplay_WithBuildProcessor::create($decorated, $processor);
   }
 
   /**
