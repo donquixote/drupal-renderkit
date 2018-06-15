@@ -90,8 +90,6 @@ class Configurator_EntityDisplay_FieldWithFormatter extends Configurator_GroupBa
    *
    * @return string
    *   PHP statement to generate the value.
-   *
-   * @throws \Drupal\cfrapi\Exception\InvalidConfigurationException
    */
   public function confGetPhp($conf, CfrCodegenHelperInterface $helper) {
     $conf = $this->confGetNormalized($conf);
