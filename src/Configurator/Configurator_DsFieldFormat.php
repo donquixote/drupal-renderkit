@@ -31,7 +31,7 @@ class Configurator_DsFieldFormat implements ConfiguratorInterface {
    * @see ds_field_settings_form()
    */
   public function confGetForm($conf, $label) {
-    if (!is_array($conf)) {
+    if (!\is_array($conf)) {
       $conf = [];
     }
 

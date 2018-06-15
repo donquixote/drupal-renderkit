@@ -83,7 +83,7 @@ class EntityToEntity_UserProfile2 extends EntityToEntityBase {
 
     $profile_or_profiles = \profile2_load_by_user($user, $this->profile2TypeName);
 
-    if (!is_array($profile_or_profiles)) {
+    if (!\is_array($profile_or_profiles)) {
       return $profile_or_profiles ?: NULL;
     }
 

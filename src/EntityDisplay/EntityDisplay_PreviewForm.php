@@ -99,7 +99,7 @@ class EntityDisplay_PreviewForm extends EntityDisplayBase {
     }
 
     if (!$entityDisplay instanceof EntityDisplayInterface) {
-      if (is_object($entityDisplay)) {
+      if (\is_object($entityDisplay)) {
         $build['preview']['#markup'] = t(
           'The configurator returned an object that does not implement @interface.',
           ['@interface' => 'EntityDisplayInterface']);

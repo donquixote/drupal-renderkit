@@ -166,7 +166,7 @@ class Configurator_ListFormat_Expert implements ConfiguratorInterface {
    */
   private function confGetElementDefaults($conf) {
 
-    if (!is_array($conf)) {
+    if (!\is_array($conf)) {
       $conf = [];
     }
 

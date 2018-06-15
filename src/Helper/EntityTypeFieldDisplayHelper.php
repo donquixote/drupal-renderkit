@@ -77,7 +77,7 @@ class EntityTypeFieldDisplayHelper {
       return NULL;
     }
     $formatterFunction = $display['module'] . '_field_formatter_view';
-    if (!function_exists($formatterFunction)) {
+    if (!\function_exists($formatterFunction)) {
       return NULL;
     }
     $langcode = field_valid_language($langcode, FALSE);
@@ -268,14 +268,14 @@ class EntityTypeFieldDisplayHelper {
 
     /* @see hook_field_prepare_view() */
     $function = $this->fieldInfo['module'] . '_field_prepare_view';
-    if (function_exists($function)) {
+    if (\function_exists($function)) {
       $null = NULL;
       $function($this->entityType, $languageEntitiesById, $this->fieldInfo, $instancesById, $entityFieldDisplayLanguage, $itemsByEntityId, $this->display, $null);
     }
 
     /* @see hook_field_formatter_prepare_view() */
     $function = $this->display['module'] . '_field_formatter_prepare_view';
-    if (function_exists($function)) {
+    if (\function_exists($function)) {
       $displaysByEntityId = array_fill_keys(array_keys($languageEntitiesById), $this->display);
       $function($this->entityType, $languageEntitiesById, $this->fieldInfo, $instancesById, $entityFieldDisplayLanguage, $itemsByEntityId, $displaysByEntityId);
     }

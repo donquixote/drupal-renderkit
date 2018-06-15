@@ -50,8 +50,8 @@ class EntityDisplay_Images extends EntityDisplayBase {
     if ($images === []) {
       return [];
     }
-    if (!is_array($images)) {
-      $class = get_class($this->entityImages);
+    if (!\is_array($images)) {
+      $class = \get_class($this->entityImages);
       throw new \RuntimeException("Injected {$class}->entityGetImages() component did not return an array.");
     }
     return $this->imagesDisplay->buildImages($images);

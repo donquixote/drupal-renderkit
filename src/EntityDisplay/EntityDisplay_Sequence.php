@@ -41,7 +41,7 @@ class EntityDisplay_Sequence extends EntitiesDisplayBase {
       if (!$displayHandler instanceof EntityDisplayInterface) {
         unset($displayHandlers[$delta]);
       }
-      if (!is_int($delta) && '' !== $delta && '#' === $delta[0]) {
+      if (!\is_int($delta) && '' !== $delta && '#' === $delta[0]) {
         unset($displayHandlers[$delta]);
       }
     }

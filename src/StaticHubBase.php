@@ -109,8 +109,8 @@ abstract class StaticHubBase {
 
     $interface = self::INTERFACE_NAME;
 
-    if (!is_object($candidate)) {
-      $type = gettype($candidate);
+    if (!\is_object($candidate)) {
+      $type = \gettype($candidate);
       return new ConfToValueException(
         "The configurator is expected to return a $interface object, $type value found instead.");
     }
@@ -120,7 +120,7 @@ abstract class StaticHubBase {
         "The configurator returned a $interface object, but somebody is still unhappy.");
     }
 
-    $class = get_class($candidate);
+    $class = \get_class($candidate);
     return new ConfToValueException(
       "The configurator is expected to return a $interface object, $class object found instead.");
   }

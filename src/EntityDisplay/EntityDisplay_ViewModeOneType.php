@@ -53,7 +53,7 @@ class EntityDisplay_ViewModeOneType extends EntityDisplay_ViewModeBase {
    */
   public static function createFromId($id) {
 
-    if (!is_string($id)) {
+    if (!\is_string($id)) {
       throw new ConfToValueException("Id must be a string.");
     }
 

@@ -52,7 +52,7 @@ class Configurator_FieldFormatterSettings implements ConfiguratorInterface {
       return NULL;
     }
     $fieldType = $fieldInfo['type'];
-    if (!in_array($fieldType, $formatterTypeInfo['field types'], TRUE)) {
+    if (!\in_array($fieldType, $formatterTypeInfo['field types'], TRUE)) {
       return NULL;
     }
     return new self($fieldName, $fieldInfo, $formatterType, $formatterTypeInfo);
@@ -82,7 +82,7 @@ class Configurator_FieldFormatterSettings implements ConfiguratorInterface {
   public function confGetForm($conf, $label) {
     /* @see hook_field_formatter_settings_form() */
     $function = $this->formatterTypeInfo['module'] . '_field_formatter_settings_form';
-    if (!function_exists($function)) {
+    if (!\function_exists($function)) {
       return [];
     }
     $settings = $this->confGetFormatterSettings($conf);
@@ -91,7 +91,7 @@ class Configurator_FieldFormatterSettings implements ConfiguratorInterface {
     $form_state = [];
     $settings_form = $function($this->fieldInfo, $instance, '_custom', $form, $form_state);
 
-    if (!count($settings_form)) {
+    if (!\count($settings_form)) {
       return [];
     }
     return $settings_form;
@@ -141,7 +141,7 @@ class Configurator_FieldFormatterSettings implements ConfiguratorInterface {
    * @return array
    */
   private function confGetFormatterSettings($conf) {
-    $settings = is_array($conf) ? $conf : [];
+    $settings = \is_array($conf) ? $conf : [];
     # $settings = isset($conf['settings']) ? $conf['settings'] : array();
     return $settings + $this->formatterTypeInfo['settings'];
   }

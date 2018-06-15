@@ -23,7 +23,7 @@ class Configurator_ListSeparator implements ConfiguratorInterface {
       '#type' => 'textfield',
       '#maxlength' => 20,
       '#size' => 6,
-      '#default_value' => is_string($conf) ? $conf : NULL,
+      '#default_value' => \is_string($conf) ? $conf : NULL,
     ];
   }
 
@@ -35,7 +35,7 @@ class Configurator_ListSeparator implements ConfiguratorInterface {
    * @return null|string
    */
   public function confGetSummary($conf, SummaryBuilderInterface $summaryBuilder) {
-    return is_string($conf)
+    return \is_string($conf)
       ? check_plain(json_encode(substr($conf, 0, 7)))
       : NULL;
   }
@@ -48,7 +48,7 @@ class Configurator_ListSeparator implements ConfiguratorInterface {
    *   Value to be used in the application.
    */
   public function confGetValue($conf) {
-    if (!is_string($conf)) {
+    if (!\is_string($conf)) {
       $conf = '';
     }
     return check_plain($conf);
@@ -63,7 +63,7 @@ class Configurator_ListSeparator implements ConfiguratorInterface {
    *   PHP statement to generate the value.
    */
   public function confGetPhp($conf, CfrCodegenHelperInterface $helper) {
-    if (!is_string($conf)) {
+    if (!\is_string($conf)) {
       $conf = '';
     }
     return var_export(check_plain($conf), TRUE);

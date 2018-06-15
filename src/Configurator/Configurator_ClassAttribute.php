@@ -59,7 +59,7 @@ class Configurator_ClassAttribute implements ConfiguratorInterface {
       '#title' => $label,
       '#description' => t('Classes, separated by space'),
       '#type' => 'textfield',
-      '#default_value' => is_string($conf) ? $conf : '',
+      '#default_value' => \is_string($conf) ? $conf : '',
       '#element_validate' => [[__CLASS__, 'elementValidate']],
     ];
   }
@@ -72,7 +72,7 @@ class Configurator_ClassAttribute implements ConfiguratorInterface {
    * @return null|string
    */
   public function confGetSummary($conf, SummaryBuilderInterface $summaryBuilder) {
-    return NULL !== $conf && '' !== $conf && is_string($conf)
+    return NULL !== $conf && '' !== $conf && \is_string($conf)
       ? '<code>' . check_plain($conf) . '</code>'
       : NULL;
   }
@@ -87,7 +87,7 @@ class Configurator_ClassAttribute implements ConfiguratorInterface {
    *   still results in valid HTML, so we don't care.
    */
   public function confGetValue($conf) {
-    if ('' === $conf || !is_string($conf)) {
+    if ('' === $conf || !\is_string($conf)) {
       return [];
     }
     // Keep only those class names that don't contain invalid characters, and that are not empty.

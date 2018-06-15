@@ -149,7 +149,7 @@ class Configurator_EntityDisplay_Title implements ConfiguratorInterface {
    */
   private function confGetNormalized($conf) {
 
-    if (!is_array($conf)) {
+    if (!\is_array($conf)) {
       $conf = [];
     }
 

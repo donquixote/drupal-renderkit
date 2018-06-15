@@ -73,7 +73,7 @@ class Configurator_EntityDisplay_FieldWithFormatter extends Configurator_GroupBa
 
     $value = parent::confGetValue($conf);
 
-    if (!is_array($value)) {
+    if (!\is_array($value)) {
       return $value;
     }
 
@@ -103,7 +103,7 @@ class Configurator_EntityDisplay_FieldWithFormatter extends Configurator_GroupBa
 
     $group_snippets = parent::confGetPhpStatements($conf, $helper);
 
-    if (!is_array($group_values)) {
+    if (!\is_array($group_values)) {
       return $helper->incompatibleConfiguration($conf, "Invalid field settings.");
     }
 
@@ -126,14 +126,14 @@ class Configurator_EntityDisplay_FieldWithFormatter extends Configurator_GroupBa
    */
   private function confGetNormalized($conf) {
 
-    if (!is_array($conf) || !isset($conf['field']) || !is_string($conf['field'])) {
+    if (!\is_array($conf) || !isset($conf['field']) || !\is_string($conf['field'])) {
       return $conf;
     }
 
     $normalized = [];
     $normalized['field']['field'] = $conf['field'];
 
-    if (isset($conf['display']) && is_array($conf['display'])) {
+    if (isset($conf['display']) && \is_array($conf['display'])) {
       $display = $conf['display'];
       if (isset($display['label'])) {
         $normalized['label'] = $display['label'];

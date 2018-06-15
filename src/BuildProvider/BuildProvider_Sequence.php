@@ -60,7 +60,7 @@ class BuildProvider_Sequence implements BuildProviderInterface {
     $builds = [];
     foreach ($this->providers as $k => $provider) {
       $build = $provider->build();
-      if (is_array($build) && [] !== $build) {
+      if (\is_array($build) && [] !== $build) {
         $builds[$k] = $provider->build();
       }
     }

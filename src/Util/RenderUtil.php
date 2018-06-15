@@ -34,7 +34,7 @@ final class RenderUtil extends UtilBase {
       if ('#' === $delta[0]) {
         throw new \RuntimeException("Illegal delta '$delta'.");
       }
-      if (!is_array($item)) {
+      if (!\is_array($item)) {
         $item_export = var_export($item, TRUE);
         throw new \RuntimeException("Item at delta '$delta' is not an array, but $item_export.");
       }

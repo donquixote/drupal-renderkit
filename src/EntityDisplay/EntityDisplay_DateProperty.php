@@ -63,7 +63,7 @@ class EntityDisplay_DateProperty extends EntityDisplayBase {
       return [];
     }
     $date = $entity->{$this->key};
-    if (!is_int($date)) {
+    if (!\is_int($date)) {
       // Not a timestamp.
       return [];
     }

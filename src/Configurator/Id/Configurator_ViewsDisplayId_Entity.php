@@ -65,7 +65,7 @@ class Configurator_ViewsDisplayId_Entity extends Configurator_SelectBase {
         if (empty($display->display_options['argument_input'])) {
           continue;
         }
-        if (count($display->display_options['argument_input']) > 1) {
+        if (\count($display->display_options['argument_input']) > 1) {
           continue;
         }
 

@@ -49,7 +49,7 @@ class EntityDisplay_DsField extends EntityDisplayBase {
    */
   public static function plugin($entity_type = NULL) {
 
-    if (!function_exists('ds_get_fields') || !module_exists('ds')) {
+    if (!\function_exists('ds_get_fields') || !module_exists('ds')) {
       return NULL;
     }
 
@@ -89,7 +89,7 @@ class EntityDisplay_DsField extends EntityDisplayBase {
     FieldDisplayProcessorInterface $fieldDisplayProcessor = NULL
   ) {
 
-    if (!function_exists('ds_get_fields') || !module_exists('ds')) {
+    if (!\function_exists('ds_get_fields') || !module_exists('ds')) {
       return NULL;
     }
 
@@ -123,7 +123,7 @@ class EntityDisplay_DsField extends EntityDisplayBase {
     FieldDisplayProcessorInterface $fieldDisplayProcessor = NULL
   ) {
 
-    if (!function_exists('ds_get_fields') || !module_exists('ds')) {
+    if (!\function_exists('ds_get_fields') || !module_exists('ds')) {
       return NULL;
     }
 
@@ -148,7 +148,7 @@ class EntityDisplay_DsField extends EntityDisplayBase {
       : 'inline';
 
     $access = 0
-      || !function_exists('ds_extras_ds_field_access')
+      || !\function_exists('ds_extras_ds_field_access')
       || !variable_get('ds_extras_field_permissions', FALSE)
       || user_access('view ' . $key . ' on ' . $expectedEntityType);
 
@@ -238,7 +238,7 @@ class EntityDisplay_DsField extends EntityDisplayBase {
     // Title label.
     if ($key === 'title' && $entity_type === 'node') {
       $node_type = node_type_get_type($entity);
-      $field['title'] = function_exists('i18n_node_translate_type')
+      $field['title'] = \function_exists('i18n_node_translate_type')
         ? i18n_node_translate_type($node_type->type, 'title_label', $node_type->title_label)
         : $node_type->title_label;
     }
