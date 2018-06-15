@@ -4,7 +4,6 @@ namespace Drupal\renderkit\EntityToEntities;
 
 use Drupal\cfrreflection\Configurator\Configurator_CallbackConfigurable;
 use Drupal\renderkit\Configurator\Id\Configurator_FieldName;
-use Drupal\renderkit\EntityToEntity\EntityToEntityMultipleBase;
 
 class EntityToEntities_EntityReferenceField extends EntityToEntitiesMultipleBase {
 
