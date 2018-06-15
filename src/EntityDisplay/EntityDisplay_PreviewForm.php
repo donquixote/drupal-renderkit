@@ -126,13 +126,25 @@ class EntityDisplay_PreviewForm extends EntityDisplayBase {
    * @return \Drupal\cfrapi\Context\CfrContextInterface
    */
   private function etBundleBuildContext($entityType, $entity) {
-    list(,,$bundle) = entity_extract_ids($entityType, $entity);
-    return CfrContext::create()
-      ->paramNameSetValue('entityType', $entityType)
-      ->paramNameSetValue('entity_type', $entityType)
-      ->paramNameSetValue('bundle', $bundle)
-      ->paramNameSetValue('bundle_name', $bundle)
-      ->paramNameSetValue('bundleName', $bundle);
+
+    $context_array = [
+      'entityType' => $entityType,
+      'entity_type' => $entityType,
+    ];
+
+    try {
+      list(, , $bundle) = entity_extract_ids($entityType, $entity);
+      $context_array += [
+        'bundle' => $bundle,
+        'bundle_name' => $bundle,
+        'bundleName' => $bundle,
+      ];
+    }
+    catch (\EntityMalformedException $e) {
+      // Nothing.
+    }
+
+    return new CfrContext($context_array);
   }
 
   /**
