@@ -33,6 +33,7 @@ class Configurator_EntityViewModeName extends Configurator_SelectBase {
 
     $entity_info = entity_get_info($this->entityType);
     $options = [];
+    $options['default'] = t('Default');
     if (!empty($entity_info['view modes'])) {
       foreach ($entity_info['view modes'] as $mode => $settings) {
         $options[$mode] = $settings['label'];
@@ -48,6 +49,9 @@ class Configurator_EntityViewModeName extends Configurator_SelectBase {
    * @return string|null
    */
   protected function idGetLabel($id) {
+    if ('default' === $id) {
+      return t('Default');
+    }
     $entity_info = entity_get_info($this->entityType);
     if (isset($entity_info['view modes'][$id]['label'])) {
       return $entity_info['view modes'][$id]['label'];
@@ -66,6 +70,9 @@ class Configurator_EntityViewModeName extends Configurator_SelectBase {
    * @return bool
    */
   protected function idIsKnown($id) {
+    if ('default' === $id) {
+      return TRUE;
+    }
     $entity_info = entity_get_info($this->entityType);
     return isset($entity_info['view modes'][$id]);
   }
