@@ -7,16 +7,25 @@ use Drupal\cfrapi\Configurator\Id\Configurator_SelectBase;
 class Configurator_EntityType extends Configurator_SelectBase {
 
   /**
-   * @return string[]|string[][]|mixed[]
+   * @return string[][]
    */
   protected function getSelectOptions() {
 
-    $options = [];
+    $groupLabels = [
+      t('Content entity types'),
+      t('Configuration entity types'),
+    ];
+
+    $optionss = [[], []];
     foreach (entity_get_info() as $entityType => $entityTypeInfo) {
-      $options[$entityType] = $entityTypeInfo['label'];
+      $groupId = empty($entityTypeInfo['configuration']) ? 0 : 1;
+      $optionss[$groupId][$entityType] = $entityTypeInfo['label'];
     }
 
-    return $options;
+    $optionss = array_combine($groupLabels, $optionss);
+    $optionss = array_filter($optionss);
+
+    return $optionss;
   }
 
   /**
