@@ -2,7 +2,7 @@
 
 namespace Drupal\renderkit\Util;
 
-use Drupal\cfrapi\Exception\InvalidConfigurationException;
+use Drupal\cfrapi\Exception\ConfToValueException;
 
 final class FieldUtil extends UtilBase {
 
@@ -13,24 +13,24 @@ final class FieldUtil extends UtilBase {
    * @param array $allowedTypes
    *
    * @return array
-   * @throws \Drupal\cfrapi\Exception\InvalidConfigurationException
+   * @throws \Drupal\cfrapi\Exception\ConfToValueException
    */
   public static function fieldnameLoadInfoAssertType($fieldName, array $allowedTypes) {
 
     $fieldInfo = field_info_field($fieldName);
 
     if (NULL === $fieldInfo) {
-      throw new InvalidConfigurationException("Field '$fieldName' does not exist.");
+      throw new ConfToValueException("Field '$fieldName' does not exist.");
     }
 
     if (!isset($fieldInfo['type'])) {
-      throw new InvalidConfigurationException("Field '$fieldName' has no field type.");
+      throw new ConfToValueException("Field '$fieldName' has no field type.");
     }
 
     if (!in_array($fieldInfo['type'], $allowedTypes, TRUE)) {
       $typeExport = var_export($fieldInfo['type'], TRUE);
       $allowedTypesExport = implode(', ', $allowedTypes);
-      throw new InvalidConfigurationException("Field type of '$fieldName' expected to be one of $allowedTypesExport, $typeExport found instead.");
+      throw new ConfToValueException("Field type of '$fieldName' expected to be one of $allowedTypesExport, $typeExport found instead.");
     }
 
     return $fieldInfo;

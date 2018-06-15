@@ -2,7 +2,7 @@
 
 namespace Drupal\renderkit\EntityDisplay;
 
-use Drupal\cfrapi\Exception\InvalidConfigurationException;
+use Drupal\cfrapi\Exception\ConfToValueException;
 use Drupal\cfrreflection\Configurator\Configurator_CallbackMono;
 use Drupal\renderkit\Configurator\Id\Configurator_EntityTypeWithViewModeName;
 
@@ -49,26 +49,26 @@ class EntityDisplay_ViewModeOneType extends EntityDisplay_ViewModeBase {
    *
    * @return \Drupal\renderkit\EntityDisplay\EntityDisplay_ViewModeOneType
    *
-   * @throws \Drupal\cfrapi\Exception\InvalidConfigurationException
+   * @throws \Drupal\cfrapi\Exception\ConfToValueException
    */
   public static function createFromId($id) {
 
     if (!is_string($id)) {
-      throw new InvalidConfigurationException("Id must be a string.");
+      throw new ConfToValueException("Id must be a string.");
     }
 
     if ('' === $id) {
-      throw new InvalidConfigurationException("Id must not be empty.");
+      throw new ConfToValueException("Id must not be empty.");
     }
 
     list($type, $mode) = explode(':', $id . ':');
 
     if ('' === $type) {
-      throw new InvalidConfigurationException("Entity type must not be empty.");
+      throw new ConfToValueException("Entity type must not be empty.");
     }
 
     if ('' === $mode) {
-      throw new InvalidConfigurationException("View mode name must not be empty.");
+      throw new ConfToValueException("View mode name must not be empty.");
     }
 
     return new self($type, $mode);

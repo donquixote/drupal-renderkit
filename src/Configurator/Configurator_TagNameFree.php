@@ -4,7 +4,7 @@ namespace Drupal\renderkit\Configurator;
 
 use Drupal\cfrapi\CfrCodegenHelper\CfrCodegenHelperInterface;
 use Drupal\cfrapi\Configurator\Optional\OptionalConfiguratorBase;
-use Drupal\cfrapi\Exception\InvalidConfigurationException;
+use Drupal\cfrapi\Exception\ConfToValueException;
 use Drupal\cfrapi\SummaryBuilder\SummaryBuilderInterface;
 
 class Configurator_TagNameFree extends OptionalConfiguratorBase {
@@ -71,12 +71,12 @@ class Configurator_TagNameFree extends OptionalConfiguratorBase {
    *
    * @return mixed
    *
-   * @throws \Drupal\cfrapi\Exception\InvalidConfigurationException
+   * @throws \Drupal\cfrapi\Exception\ConfToValueException
    */
   protected function nonEmptyConfGetValue($conf) {
 
     if (!$this->confIsValid($conf)) {
-      throw new InvalidConfigurationException("Not a valid tag name.");
+      throw new ConfToValueException("Not a valid tag name.");
     }
 
     return $conf;
