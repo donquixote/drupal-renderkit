@@ -86,7 +86,7 @@ class EntityImage_ImageField implements EntityImageInterface {
       $build['#attributes'] = $item['attributes'];
     }
 
-    if (isset($item['width']) && isset($item['height'])) {
+    if (isset($item['width'], $item['height'])) {
       $build['#width'] = $item['width'];
       $build['#height'] = $item['height'];
     }
