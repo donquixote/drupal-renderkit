@@ -31,10 +31,11 @@ class Configurator_EntityTypeWithViewModeName extends Configurator_SelectBase {
 
     $options = [];
     foreach ($this->getFilteredEntityInfo() as $type => $type_entity_info) {
+      $type_label = $type_entity_info['label'];
+      $options[$type_label][$type . ':default'] = t('Default');
       if (empty($type_entity_info['view modes'])) {
         continue;
       }
-      $type_label = $type_entity_info['label'];
       foreach ($type_entity_info['view modes'] as $mode => $settings) {
         $options[$type_label][$type . ':' . $mode] = $settings['label'];
       }
@@ -59,7 +60,10 @@ class Configurator_EntityTypeWithViewModeName extends Configurator_SelectBase {
       return NULL;
     }
 
-    if (isset($type_entity_info['view modes'][$mode]['label'])) {
+    if ('default' === $mode) {
+      $label = t('Default');
+    }
+    elseif (isset($type_entity_info['view modes'][$mode]['label'])) {
       $label = $type_entity_info['view modes'][$mode]['label'];
     }
     elseif (isset($type_entity_info['view modes'][$mode])) {
@@ -84,7 +88,10 @@ class Configurator_EntityTypeWithViewModeName extends Configurator_SelectBase {
     return 1
       && '' !== $type && '' !== $mode
       && NULL !== ($type_entity_info = $this->typeGetEntityInfo($type))
-      && isset($type_entity_info['view modes'][$mode]);
+      && (0
+        || 'default' === $mode
+        || isset($type_entity_info['view modes'][$mode])
+      );
   }
 
   /**
