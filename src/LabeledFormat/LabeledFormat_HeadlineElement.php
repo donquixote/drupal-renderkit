@@ -57,7 +57,7 @@ class LabeledFormat_HeadlineElement implements LabeledFormatInterface {
    *   Modified or wrapped render array with label.
    */
   public function buildAddLabel(array $build, $label) {
-    $label_markup = '<h2>' . check_plain($label) . '</h2>';
+    $label_markup = '<' . $this->tagName . '>' . check_plain($label) . '</' . $this->tagName . '>';
     return [
       'label' => [
         '#markup' => $label_markup,
