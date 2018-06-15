@@ -2,6 +2,7 @@
 
 namespace Drupal\renderkit\EntityBuildProcessor;
 
+use Drupal\cfrapi\Context\CfrContextInterface;
 use Drupal\renderkit\StaticHubBase;
 
 class EntityBuildProcessor extends StaticHubBase {
@@ -10,13 +11,15 @@ class EntityBuildProcessor extends StaticHubBase {
 
   /**
    * @param mixed $conf
+   * @param \Drupal\cfrapi\Context\CfrContextInterface|null $context
    *
-   * @return \Drupal\renderkit\EntityDisplay\EntityDisplayInterface
+   * @return \Drupal\renderkit\EntityBuildProcessor\EntityBuildProcessorInterface
+   *
    * @throws \Drupal\cfrapi\Exception\ConfToValueException
    */
-  public static function fromConf($conf) {
+  public static function fromConf($conf, CfrContextInterface $context = NULL) {
 
-    $candidate = self::configurator()->confGetValue($conf);
+    $candidate = self::configurator($context)->confGetValue($conf);
 
     if ($candidate instanceof EntityBuildProcessorInterface) {
       return $candidate;

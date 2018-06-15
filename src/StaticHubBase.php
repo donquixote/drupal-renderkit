@@ -69,13 +69,13 @@ abstract class StaticHubBase {
    * This should be overridden for IDE
    *
    * @param mixed $conf
+   * @param \Drupal\cfrapi\Context\CfrContextInterface|null $context
    *
    * @return object
    *
    * @throws \Drupal\cfrapi\Exception\ConfToValueException
-   * @throws \RuntimeException
    */
-  public static function fromConf($conf) {
+  public static function fromConf($conf, CfrContextInterface $context = NULL) {
 
     $interface = self::INTERFACE_NAME;
 
@@ -91,7 +91,7 @@ abstract class StaticHubBase {
       throw new \RuntimeException("The $class::INTERFACE_NAME constant must be overridden in $childClass!");
     }
 
-    $candidate = self::configurator()->confGetValue($conf);
+    $candidate = self::configurator($context)->confGetValue($conf);
 
     if ($candidate instanceof $interface) {
       return $candidate;
