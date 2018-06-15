@@ -52,12 +52,12 @@ class Configurator_EntityViewModeName extends Configurator_SelectBase {
     if (isset($entity_info['view modes'][$id]['label'])) {
       return $entity_info['view modes'][$id]['label'];
     }
-    elseif (isset($entity_info['view modes'][$id])) {
+
+    if (isset($entity_info['view modes'][$id])) {
       return $id;
     }
-    else {
-      return NULL;
-    }
+
+    return NULL;
   }
 
   /**

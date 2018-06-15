@@ -40,11 +40,11 @@ class EntityDisplay_ViewModeByType extends EntityDisplay_ViewModeBase {
     if (!empty($this->viewModesByType[$entityType])) {
       return $this->viewModesByType[$entityType];
     }
-    elseif (NULL !== $this->defaultViewModeName) {
+
+    if (NULL !== $this->defaultViewModeName) {
       return $this->defaultViewModeName;
     }
-    else {
-      return NULL;
-    }
+
+    return NULL;
   }
 }

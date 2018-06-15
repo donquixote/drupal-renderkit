@@ -35,9 +35,8 @@ class EntityToEntity_SelfOrOther implements EntityToEntityInterface {
     if ($entityType === $this->decorated->getTargetType()) {
       return $entities;
     }
-    else {
-      return $this->decorated->entitiesGetRelated($entityType, $entities);
-    }
+
+    return $this->decorated->entitiesGetRelated($entityType, $entities);
   }
 
   /**
@@ -50,8 +49,7 @@ class EntityToEntity_SelfOrOther implements EntityToEntityInterface {
     if ($entityType === $this->getTargetType()) {
       return $entity;
     }
-    else {
-      return $this->decorated->entityGetRelated($entityType, $entity);
-    }
+
+    return $this->decorated->entityGetRelated($entityType, $entity);
   }
 }

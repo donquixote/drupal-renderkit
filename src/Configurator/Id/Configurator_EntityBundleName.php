@@ -45,12 +45,12 @@ class Configurator_EntityBundleName extends Configurator_SelectBase {
     if (isset($entity_info['bundles'][$id]['label'])) {
       return $entity_info['bundles'][$id]['label'];
     }
-    elseif (isset($entity_info['bundles'][$id])) {
+
+    if (isset($entity_info['bundles'][$id])) {
       return $id;
     }
-    else {
-      return NULL;
-    }
+
+    return NULL;
   }
 
   /**

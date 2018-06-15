@@ -73,15 +73,16 @@ class Configurator_EntityDisplay_Title implements ConfiguratorInterface {
     if ($link && NULL !== $wrapperTagName) {
       return $wrapperTagName . ', ' . t('linked to entity') . '.';
     }
-    elseif ($link) {
+
+    if ($link) {
       return t('Linked to entity');
     }
-    elseif (NULL !== $wrapperTagName) {
+
+    if (NULL !== $wrapperTagName) {
       return $wrapperTagName;
     }
-    else {
-      return t('Raw title');
-    }
+
+    return t('Raw title');
   }
 
   /**
