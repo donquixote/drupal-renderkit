@@ -4,7 +4,7 @@ namespace Drupal\renderkit\EntityDisplay;
 
 use Drupal\cfrapi\Context\CfrContext;
 use Drupal\cfrapi\Context\CfrContextInterface;
-use Drupal\cfrapi\Exception\InvalidConfigurationException;
+use Drupal\cfrapi\Exception\ConfToValueException;
 
 class EntityDisplay_PreviewForm extends EntityDisplayBase {
 
@@ -91,12 +91,9 @@ class EntityDisplay_PreviewForm extends EntityDisplayBase {
     }
 
     try {
-      $entityDisplay = cfrplugin()
-        ->interfaceGetOptionalConfigurator(
-          EntityDisplayInterface::class, $context)
-        ->confGetValue($conf);
+      $entityDisplay = EntityDisplay::fromConf($conf, $context);
     }
-    catch (InvalidConfigurationException $e) {
+    catch (ConfToValueException $e) {
       drupal_set_message(t('Failed to construct the EntityDisplay object from the configuration provided.'));
       return $build;
     }
