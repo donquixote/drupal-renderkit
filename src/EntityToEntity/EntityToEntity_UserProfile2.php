@@ -55,7 +55,7 @@ class EntityToEntity_UserProfile2 extends EntityToEntityBase {
    */
   public function __construct($profile2TypeName = NULL, EntityToEntityInterface $entityToUser = NULL) {
     $this->profile2TypeName = $profile2TypeName;
-    if ('user' === $entityToUser->getTargetType()) {
+    if (NULL !== $entityToUser && 'user' === $entityToUser->getTargetType()) {
       $this->entityToUser = $entityToUser;
     }
   }
