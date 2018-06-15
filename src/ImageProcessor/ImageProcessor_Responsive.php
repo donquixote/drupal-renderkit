@@ -97,7 +97,12 @@ class ImageProcessor_Responsive implements ImageProcessorInterface {
 
     // Path to the original image file.
     $original_path = $build['#path'];
-    $original_dimensions = $this->imageBuildGetDimensions($build);
+    try {
+      $original_dimensions = $this->imageBuildGetDimensions($build);
+    }
+    catch (\Exception $e) {
+      return $build;
+    }
 
     // Only change the '#path' and '#width' and '#height' if the fallback image
     // uses an image style.
@@ -142,7 +147,9 @@ class ImageProcessor_Responsive implements ImageProcessorInterface {
    *
    * @return int[]
    *   Format: array('width' => $width, 'height' => $height)
+   *
    * @throws \Exception
+   *   If the image cannot be loaded to determine the dimensions.
    */
   protected function imageBuildGetDimensions(array $build) {
     if (!empty($build['#width']) && !empty($build['#height'])) {
